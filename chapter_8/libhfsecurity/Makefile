@@ -1,6 +1,6 @@
 
 encrypt.o: encrypt.c encrypt.h
-	gcc -c encrypt.c -o encrypt.o
+	gcc -c -I. encrypt.c -o encrypt.o
 
 checksum.o: checksum.c checksum.h
 	gcc -c checksum.c -o checksum.o

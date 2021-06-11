@@ -4,7 +4,7 @@
 
 int main()
 {
-    char s[] = "Speak friend and enter";
+    char s[] = "Speak loudly";
     encrypt(s);
     printf("Encrypted to '%s'\n", s);
     printf("Checksum is %i\n", checksum(s));
