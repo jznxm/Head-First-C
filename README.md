@@ -1,2 +1,2 @@
-# head-first-c
+# Head Fisrt C 
 Head First C - Exercises
