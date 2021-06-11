@@ -8,7 +8,7 @@ typedef struct node {
     struct node *yes;
 } node;
 
-int yes_no(char *question)
+int yes_no(const char *question)
 {
     char answer[3];
     printf("%s? (y/n): ", question);
@@ -16,14 +16,15 @@ int yes_no(char *question)
     return answer[0] == 'y';
 }
 
-node* create(char *question)
+node* create(const char *question)
 {
-    node *n = malloc(sizeof(node));
+    node *n = (node *)malloc(sizeof(node));
     n->question = strdup(question);
     n->no = NULL;
     n->yes = NULL;
     return n;
 }
+
 void release(node *n)
 {
     if (n) {

@@ -4,9 +4,9 @@
 
 typedef struct island
 {
-    char *name;
-    char *opens;
-    char *closes;
+    const char *name;
+    const char *opens;
+    const char *closes;
     struct island *next;
 } island;
 
@@ -26,14 +26,14 @@ void release(island *start)
     for(;i != NULL; i = next)
     {
         next = i->next;
-        free(i->name);
+        free((void *)(i->name));
         free(i);
     }
 }
 
 island *create(const char *island_name)
 {
-    island *i = malloc(sizeof(island));
+    island *i = (island *)malloc(sizeof(island));
     i->name = strdup(island_name);
     i->opens = "09:00";
     i->closes = "17:00";
