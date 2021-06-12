@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-enum drink
+typedef enum 
 {
     MUDSLIDE, FUZZY_NAVEL, MONKEY_GLAND, ZOMBIE
-};
+}drink;
 
-double price(enum drink d)
+double price(drink d)
 {
     switch(d)
     {
@@ -30,7 +30,7 @@ double total(int args, ...)
     int i;
     for (i = 0; i < args; i++)
     {
-        total += price(va_arg(ap, enum drink));
+        total += price(va_arg(ap, drink));
     }
     va_end(ap);
     return total;

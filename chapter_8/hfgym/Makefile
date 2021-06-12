@@ -1,14 +1,14 @@
 elliptical.o: elliptical.c
-	gcc -c elliptical.o elliptical.c -Iincludes
+	gcc -c  elliptical.c -I/mnt/f/OneDrive/Code/Head-First-C/chapter_8/hfgym/includes -o elliptical.o
 
-hfcal_uk: hfcal_UK.c
-	gcc -c -fPIC hfcal_UK.c -Iincludes -o hfcal.o
+hfcal_uk.o: hfcal_UK.c
+	gcc -c -fPIC hfcal_UK.c -I/mnt/f/OneDrive/Code/Head-First-C/chapter_8/hfgym/includes -o hfcal_uk.o
 
-hfcal: hfcal.c
-	gcc -c -fPIC hfcal.c -Iincludes -o hfcal.o
+hfcal.o: hfcal.c
+	gcc -c -fPIC hfcal.c -I/mnt/f/OneDrive/Code/Head-First-C/chapter_8/hfgym/includes -o hfcal.o
 
-libhfcal.so:
-	gcc -shared -o libs/libhfcal.so hfcal.o
+libhfcal.so: hfcal_uk.o
+	gcc -shared hfcal_uk.o -o /usr/lib/libhfcal.so 
 
-elliptical.out: libhfcal.so elliptical.o
-	gcc -o elliptical.out elliptical.o -Llibs -lhfcal
+elliptical: libhfcal.so elliptical.o
+	gcc -o elliptical.out elliptical.o -L/usr/lib -lhfcal
