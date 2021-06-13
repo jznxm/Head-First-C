@@ -7,8 +7,9 @@
 int main(int argc, char *argv[])
 {
     char *feeds[] = {
-                     "http://conference.scipy.org/feeds/all.atom.xml",
-                     "http://maheshakya.github.io/feed.xml"
+                     (char *)"http://conference.scipy.org/feeds/all.atom.xml",
+                     (char *)"http://maheshakya.github.io/feed.xml",
+                    (char *)"http://www.cnn.com/rss/celebs.xml"
                     };
     int times = 2;
     char *phrase = argv[1];
@@ -28,7 +29,7 @@ int main(int argc, char *argv[])
         }
         if (!pid)
         {
-            if (execle("/usr/bin/python", "usr/bin/python",
+            if (execle("/usr/bin/python2", "usr/bin/python2",
                        "rssgossip.py", phrase, NULL, vars) == -1)
             {
                 fprintf(stderr, "Can't run script: %s\n", strerror(errno));
