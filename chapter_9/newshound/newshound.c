@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
     char *feeds[] = {
                      (char *)"http://conference.scipy.org/feeds/all.atom.xml",
                      (char *)"http://maheshakya.github.io/feed.xml",
-                    (char *)"http://www.cnn.com/rss/celebs.xml"
+                     (char *)"http://www.cnn.com/rss/celebs.xml"
                     };
     int times = 2;
     char *phrase = argv[1];
