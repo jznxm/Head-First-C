@@ -31,12 +31,12 @@ int read_in(int socket, char *buf, int len)
         slen -= c;
     }
     if (c < 0)
-        return  c; // There is an error
+        return c; // There is an error
     else if (c == 0)
         buf[0] = '\0'; // Send back an empty string
     else
         s[c - 2] = '\0'; // Replace the '\r' character with a '\0'
-    return len - slen; // Return the bytes read
+    return len - slen;   // Return the bytes read
 }
 
 int open_listener_socket()
@@ -52,7 +52,7 @@ void bind_to_port(int socket, int port)
     // Create a structure to store the service port and the IP (localhost)
     struct sockaddr_in name;
     name.sin_family = PF_INET;
-    name.sin_port = (in_port_t) htons(port);
+    name.sin_port = (in_port_t)htons(port);
     name.sin_addr.s_addr = htonl(INADDR_ANY);
     int reuse = 1;
     if (setsockopt(socket, SOL_SOCKET, SO_REUSEADDR, (char *)&reuse,
@@ -60,7 +60,7 @@ void bind_to_port(int socket, int port)
         error("Unable to set the reuse option on the socket");
 
     // Bind it to localhost:port
-    int c = bind(socket, (struct sockaddr *) &name, sizeof(name));
+    int c = bind(socket, (struct sockaddr *)&name, sizeof(name));
     if (c == -1)
         error("Unable to bind the socket");
 }
@@ -101,13 +101,13 @@ int catch_signal(int sig, void (*handler)(int))
 void service_client(int socket)
 {
     char *questions[] = {
-                        "Knock! Knock!\r\n",
-                        "Oscar\r\n",
-                       };
+        "Knock! Knock!\r\n",
+        "Oscar\r\n",
+    };
     char *valid_answers[] = {
-                             "Who's there?",
-                             "Oscar who?",
-                            };
+        "Who's there?",
+        "Oscar who?",
+    };
     char *final_sentence = "Oscar silly question, you get a silly answer\r\n";
     char answer[ANSWER_LEN];
     char silence[] = "Next time say something\r\n";
@@ -143,7 +143,6 @@ int main(int argc, char *argv[])
         service_port = atoi(argv[1]);
     }
 
-
     // Create the socket and bind it to the port
     listener_d = open_listener_socket();
     bind_to_port(listener_d, service_port);
@@ -160,7 +159,7 @@ int main(int argc, char *argv[])
         struct sockaddr_storage client_addr;
         unsigned int address_size = sizeof(client_addr);
         int connect_d = accept(listener_d, (struct sockaddr *)&client_addr,
-                                &address_size);
+                               &address_size);
         if (connect_d == -1)
             error("Unable to open secondary socket");
 
