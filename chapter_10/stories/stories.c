@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
         close(fd[0]); // Close the "read" end of the pipe
         if (dup2(fd[1], 1) == -1)
             error("Can't redirect Standard Output");
-        if (execle("/usr/bin/python", "/usr/bin/python", "./rssgossip.py", "-u", phrase, NULL, vars) == -1)
+        if (execle("/usr/bin/python2", "/usr/bin/python2", "./rssgossip.py", "-u", phrase, NULL, vars) == -1)
             error("Can't run script");
     }
     close(fd[1]); // Close the "write" end of the pipe
