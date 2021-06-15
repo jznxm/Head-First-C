@@ -28,5 +28,5 @@ int main()
     printf("Enter your name: ");
     fgets(name, 30, stdin);
     printf("Hello %s\n", name);
-   return 0;
+    return 0;
 }
